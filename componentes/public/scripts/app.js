@@ -1,178 +1,171 @@
 "use strict";
 
-// Si este documento tiene un "use strict" hasta arriba, SE GENERA AUTOMÁTICAMENTE!
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-// var number = 1234;
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-// var gasStation = {
-//     name:"Gas Interlomas",
-//     brand:"G500",
-//     price:19.34
-// };
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-// var showPrice = () => {
-//     if (!gasStation.price) {
-//         return "Unknown"
-//     } else {
-//         return gasStation.price
-//     }
-// }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// let counter = 0;
-
-// const addOne = () => {
-//     console.log("added");
-//     counter++;
-//     render();
-// }
-
-// const render = () => {
-//     var template = (
-//         <div>
-//             <p>HEllO!</p>
-//             <p>{number}</p>
-//             <h1>{gasStation.name}</h1>
-//             <h2>{gasStation.brand}</h2>
-//             <h3>{showPrice()}</h3>
-//             <h4>Counter: {counter}</h4>
-//             <button className="myClass" id="12" onClick={addOne}>+1</button>
-//         </div>
-//     );
-//     ReactDOM.render(template, appRoot);
-// };
-
-// const appRoot = document.getElementById('app');
-
-// render();
-
-console.log("Helo yarn");
-
-var numero = 123;
-
-var gasStation = {
-    name: "G500 Zona Esmeralda",
-    brand: "G500",
-    price: 19.32,
-    comments: []
+var hardcode = {
+    title: "Fill out",
+    subtitle: "this form",
+    questions: ["Name", "Last name", "Nickname", "Major"],
+    answers: []
 };
 
-var counter = 0;
+var MyApp = function (_React$Component) {
+    _inherits(MyApp, _React$Component);
 
-var showPrice = function showPrice() {
-    if (!gasStation.price) return "Unknown";else return gasStation.price;
-};
+    function MyApp() {
+        _classCallCheck(this, MyApp);
 
-var addOne = function addOne() {
-    console.log("add one");
-    counter++;
-    render();
-};
-
-var onFormSubmit = function onFormSubmit(e) {
-    e.preventDefault();
-    var comment = e.target.elements.comment.value;
-    if (comment) {
-        gasStation.comments.push(comment);
-        e.target.elements.comment.value = '';
-        render();
+        return _possibleConstructorReturn(this, (MyApp.__proto__ || Object.getPrototypeOf(MyApp)).apply(this, arguments));
     }
-};
 
-var numbers = [123, 456, 789];
-
-var randomComment = function randomComment() {
-    var randomNum = Math.floor(Math.random() * gasStation.comments.length);
-    var option = gasStation.comments[randomNum];
-    alert(option);
-};
-
-var deleteComment = function deleteComment(e) {
-    var name;
-    var index;
-    e = e || window.event;
-    e = e.target || e.srcElement;
-    if (e.nodeName === 'BUTTON') {
-        name = e.id;
-        index = gasStation.comments.indexOf(name);
-        if (index > -1) {
-            gasStation.comments.splice(index, 1);
+    _createClass(MyApp, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "div",
+                null,
+                React.createElement(Header, { info: hardcode }),
+                React.createElement(Form, { info: hardcode }),
+                React.createElement(Action, null)
+            );
         }
+    }]);
+
+    return MyApp;
+}(React.Component);
+
+var Header = function (_React$Component2) {
+    _inherits(Header, _React$Component2);
+
+    function Header() {
+        _classCallCheck(this, Header);
+
+        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
     }
-    render();
+
+    _createClass(Header, [{
+        key: "render",
+        value: function render() {
+            console.log(this.props);
+            return React.createElement(
+                "div",
+                null,
+                React.createElement(
+                    "h1",
+                    null,
+                    this.props.info.title
+                ),
+                React.createElement(
+                    "h2",
+                    null,
+                    this.props.info.subtitle
+                )
+            );
+        }
+    }]);
+
+    return Header;
+}(React.Component);
+
+var checkInput = function checkInput(e) {
+    e.preventDefault();
+    console.log(e);
+    var input = e.target.elements.question.value;
+    console.log(input);
+    if (input) {
+        alert("Your input is valid!");
+    } else {
+        alert("Your input is not valid!");
+    }
 };
 
-var dummyFunc = function dummyFunc(commentNum) {};
+var Field = function (_React$Component3) {
+    _inherits(Field, _React$Component3);
 
-var render = function render() {
-    var template = React.createElement(
-        "div",
-        null,
-        React.createElement(
-            "h3",
-            null,
-            gasStation.name
-        ),
-        gasStation.brand && gasStation.brand == "Shell" && React.createElement(
-            "li",
-            null,
-            "Brand: ",
-            gasStation.brand
-        ),
-        showPrice(),
-        React.createElement(
-            "p",
-            null,
-            "Counter: ",
-            counter
-        ),
-        React.createElement(
-            "button",
-            { id: "12", className: "btn btn-primary", onClick: addOne },
-            "+1"
-        ),
-        React.createElement(
-            "p",
-            null,
-            gasStation.comments.length > 0 ? 'Comentarios' : 'Sin comentarios'
-        ),
-        gasStation.comments && gasStation.comments.length > 0 && React.createElement(
-            "ol",
-            null,
-            gasStation.comments.map(function (comment, index) {
+    function Field() {
+        _classCallCheck(this, Field);
+
+        return _possibleConstructorReturn(this, (Field.__proto__ || Object.getPrototypeOf(Field)).apply(this, arguments));
+    }
+
+    _createClass(Field, [{
+        key: "render",
+        value: function render() {
+            console.log(this.props);
+            return React.createElement(
+                "form",
+                { onSubmit: checkInput },
+                React.createElement("input", { type: "text", name: "question", placeholder: this.props.question }),
+                React.createElement(
+                    "button",
+                    { className: "btn btn-danger" },
+                    "Validate"
+                )
+            );
+        }
+    }]);
+
+    return Field;
+}(React.Component);
+
+var Form = function (_React$Component4) {
+    _inherits(Form, _React$Component4);
+
+    function Form() {
+        _classCallCheck(this, Form);
+
+        return _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).apply(this, arguments));
+    }
+
+    _createClass(Form, [{
+        key: "render",
+        value: function render() {
+            console.log("Printed within form");
+            console.log(this.props);
+            return this.props.info.questions.map(function (question) {
                 return React.createElement(
-                    "li",
-                    { key: comment },
-                    comment,
-                    " ",
-                    React.createElement(
-                        "button",
-                        { type: "button", id: comment, className: "btn btn-danger", onClick: deleteComment },
-                        "X"
-                    )
+                    "div",
+                    null,
+                    React.createElement(Field, { question: question })
                 );
-            })
-        ),
-        React.createElement(
-            "form",
-            { onSubmit: onFormSubmit },
-            React.createElement("input", { type: "text", name: "comment" }),
-            React.createElement(
-                "button",
-                { className: "btn btn-success" },
-                "Agregar comentario"
-            )
-        ),
-        React.createElement(
-            "button",
-            { className: "btn btn-info", disabled: gasStation.comments.length == 0, onClick: randomComment },
-            "Random Comment"
-        )
-    );
-    ReactDOM.render(template, appRoot);
-};
+            });
+        }
+    }]);
 
-var appRoot = document.getElementById('app');
+    return Form;
+}(React.Component);
 
-render();
+var Action = function (_React$Component5) {
+    _inherits(Action, _React$Component5);
 
-// ReactDOM.render(template,appRoot);
+    function Action() {
+        _classCallCheck(this, Action);
+
+        return _possibleConstructorReturn(this, (Action.__proto__ || Object.getPrototypeOf(Action)).apply(this, arguments));
+    }
+
+    _createClass(Action, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "div",
+                null,
+                React.createElement(
+                    "button",
+                    null,
+                    "Pick an option"
+                )
+            );
+        }
+    }]);
+
+    return Action;
+}(React.Component);
+
+ReactDOM.render(React.createElement(MyApp, null), document.getElementById('app'));
